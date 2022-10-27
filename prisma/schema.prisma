@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model manga {
+  id            String  @id @default(uuid())
+  title         String
+  type          String
+  score         String?
+  status        String
+  volumes       String?
+  chapters      String?
+  synopsis      String
+  picture_url   String
+  web_url       String?
+  title_english String?
+}
+
+model user {
+  id        String    @id @default(uuid())
+  fullname  String
+  email     String    @unique(map: "User_email_key")
+  password  String
+  role      user_role @default(USER)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+enum user_role {
+  ADMIN
+  USER
+}
