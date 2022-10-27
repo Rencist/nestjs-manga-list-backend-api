@@ -5,11 +5,11 @@ import { PrismaService } from '../../prisma/prisma.service';
 export class MangaService {
   constructor(private prisma: PrismaService) {}
 
-  findDepartments() {
-    return this.prisma.departemen.findMany();
+  findMangas() {
+    return this.prisma.manga.findMany();
   }
 
-  findFaculties() {
-    return this.prisma.fakultas.findMany();
+  findManga() {
+    return this.prisma.manga.findMany();
   }
 }

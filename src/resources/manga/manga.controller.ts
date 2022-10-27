@@ -17,11 +17,11 @@ export class MangaController {
 
   @Get('/mangas')
   findAll() {
-    return this.mangaService.findDepartments();
+    return this.mangaService.findMangas();
   }
 
-  @Get('/fakultas')
+  @Get('/manga')
   findOne() {
-    return this.mangaService.findFaculties();
+    return this.mangaService.findManga();
   }
 }
