@@ -6,10 +6,10 @@ const SALT_PASSWORD = 12;
 
 async function main() {
   await csv()
-    .fromFile(__dirname + '/data/manga.csv')
+    .fromFile(__dirname + '/data/mangaa.csv')
     .then(async (mangas) => {
       for (const manga of mangas) {
-        manga.id = parseInt(manga.id);
+        manga.id = manga.id;
         await prisma.manga.upsert({
           where: { id: manga.id },
           update: manga,
