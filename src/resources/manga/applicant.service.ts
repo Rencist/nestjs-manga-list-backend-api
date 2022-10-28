@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { FieldEmptyException } from '../../exceptions/exception';
+import { MangaNotFoundExecption } from '../../exceptions/exception';
 
 @Injectable()
 export class ApplicantService {
   constructor(private prisma: PrismaService) {}
 
   async getManga(id: string) {
-    try {
-      const user = await this.prisma.manga.findUnique({
-        where: {
-          id: id,
-        },
-      });
-
+    const user = await this.prisma.manga.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (user) {
       const userParsed = JSON.parse(
         JSON.stringify(user, (_key, value) =>
           typeof value === 'bigint' ? (value = value.toString()) : value,
@@ -21,8 +20,6 @@ export class ApplicantService {
       );
 
       return userParsed;
-    } catch (err) {
-      throw new FieldEmptyException();
-    }
+    } else return new MangaNotFoundExecption('Manga not found');
   }
 }
