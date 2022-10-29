@@ -34,8 +34,8 @@ export class MangaController {
     try {
       const success = await this.mangaService.create(Manga);
       let message = '';
-      if (success) message = 'Register berhasil';
-      else message = 'Register gagal';
+      if (success) message = 'Manga berhasil ditambahkan';
+      else message = 'Manga gagal ditambahkan';
       return { message };
     } catch (err) {
       throw new BadRequestException(err);
