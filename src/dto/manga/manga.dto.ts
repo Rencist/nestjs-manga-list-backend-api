@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
-export class User {
+export class Manga {
   @IsString()
   @IsNotEmpty()
   title: string;
